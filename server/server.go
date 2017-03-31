@@ -4,9 +4,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
-	"os/signal"
-	"syscall"
 
 	"github.com/spf13/pflag"
 
@@ -20,6 +17,7 @@ type SlackBotServer struct {
 	configMap      string
 	botToken       string
 	kubeConfigFile string
+	debugEnable    bool
 	slackBot       slack.SlackBot
 }
 
@@ -29,6 +27,7 @@ func NewSlackBotServerDefault(config *options.SlackBotServerConfig) *SlackBotSer
 		configMap:      config.ConfigMap,
 		botToken:       config.BotToken,
 		kubeConfigFile: config.KubeConfigFile,
+		debugEnable:    config.DebugEnable,
 	}
 	output, err := kubernetes.TestConnection(s.kubeConfigFile)
 	if err != nil {
@@ -44,9 +43,6 @@ func (server *SlackBotServer) Run() {
 	pflag.VisitAll(func(flag *pflag.Flag) {
 		log.Printf("FLAG: --%s=%q", flag.Name, flag.Value)
 	})
-	//setupSignalHandlers()
-
-	go server.handleSigterm()
 	server.setupHealthzHandlers()
 	log.Printf("Setting up Healthz Handler(/readiness, /cache) on port :%d", server.healthzPort)
 
@@ -64,37 +60,10 @@ func (server *SlackBotServer) setupHealthzHandlers() {
 	})
 }
 
-// setupSignalHandlers runs a goroutine that waits on SIGINT or SIGTERM and logs it
-// program will be terminated by SIGKILL when grace period ends.
-func setupSignalHandlers() {
-	sigChan := make(chan os.Signal)
-	signal.Notify(sigChan, syscall.SIGINT, syscall.SIGTERM)
-	go func() {
-		log.Printf("Received signal: %s, will exit when the grace period ends", <-sigChan)
-	}()
-}
-
 func (server *SlackBotServer) start() {
 	slack.InitSlackLog()
-	go server.slackBot.RunSlackRTMServer(server.kubeConfigFile)
-}
-
-func (server *SlackBotServer) handleSigterm() {
-	signalChan := make(chan os.Signal, 1)
-	signal.Notify(signalChan, syscall.SIGTERM)
-	<-signalChan
-	log.Printf("Received SIGTERM, shutting down")
-
-	exitCode := 0
-	if err := server.stop(); err != nil {
-		log.Printf("Error during shutdown %v", err)
-		exitCode = 1
+	if server.debugEnable {
+		server.slackBot.EnableDebug()
 	}
-
-	log.Printf("Exiting with %v", exitCode)
-	os.Exit(exitCode)
-}
-
-func (server *SlackBotServer) stop() error {
-	return nil
+	go server.slackBot.RunSlackRTMServer(server.kubeConfigFile)
 }

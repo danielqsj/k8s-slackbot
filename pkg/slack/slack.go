@@ -35,6 +35,7 @@ func (bot SlackBot) RunSlackRTMServer(kubeconfig string) {
 	go rtm.ManageConnection()
 	for msg := range rtm.IncomingEvents {
 		switch ev := msg.Data.(type) {
+
 		case *slack.MessageEvent:
 			input := strings.Split(strings.TrimSpace(ev.Msg.Text), " ")
 			if len(input) > 0 {
@@ -53,8 +54,14 @@ func (bot SlackBot) RunSlackRTMServer(kubeconfig string) {
 					}
 				}
 			}
+
+		case *slack.InvalidAuthEvent:
+			log.Printf("Invalid credentials")
+			return
+
 		case *slack.RTMError:
-			fmt.Printf("Error: %s\n", ev.Error())
+			log.Printf("Error: %s\n", ev.Error())
+
 		default:
 		}
 	}
