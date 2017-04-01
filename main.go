@@ -5,8 +5,8 @@ import (
 
 	"github.com/spf13/pflag"
 
-	"github.com/danielqsj/kubernetes-slackbot/server"
-	"github.com/danielqsj/kubernetes-slackbot/server/options"
+	"github.com/danielqsj/k8s-slackbot/server"
+	"github.com/danielqsj/k8s-slackbot/server/options"
 )
 
 var (

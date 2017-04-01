@@ -2,12 +2,11 @@ FROM alpine:3.5
 
 RUN apk add --no-cache ca-certificates bash
 
-COPY . /app/k8s-slackbot/build
-WORKDIR /app/k8s-slackbot
+COPY . /app/build
 
+RUN    /app/build/build/build-go.sh \
+    && /app/build/build/build.sh \
+    && /app/build/build/finalize.sh \
+    && rm -rf /app/build
 
-RUN    ./build/docker/build-go.sh \
-    && ./build/docker/build.sh \
-    && ./build/docker/finalize.sh
-
-ENTRYPOINT ["/k8s-slackbot"]
+ENTRYPOINT ["/app/k8s-slackbot"]

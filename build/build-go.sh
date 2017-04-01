@@ -23,9 +23,9 @@ rm golang.tar.gz
 # Build
 cd /usr/local/go/src
 # see https://golang.org/issue/14851
-patch -p2 -i /app/k8s-slackbot/build/docker/no-pic.patch
+patch -p2 -i /app/build/build/no-pic.patch
 ./make.bash
 
 # Clean
-rm /app/k8s-slackbot/build/docker/*.patch
+rm /app/build/build/*.patch
 apk del build-deps-go

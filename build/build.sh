@@ -12,10 +12,11 @@ apk --no-cache --no-progress add --virtual build-deps build-base linux-pam-dev
 
 # Build k8s-slackbot
 mkdir -p ${GOPATH}/src/github.com/danielqsj/
-ln -s /app/k8s-slackbot/build ${GOPATH}/src/github.com/danielqsj/k8s-slackbot
-cd ${GOPATH}/src/github.com/gogits/k8s-slackbot
+ln -s /app/build ${GOPATH}/src/github.com/danielqsj/k8s-slackbot
+cd ${GOPATH}/src/github.com/danielqsj/k8s-slackbot
 make k8s-slackbot
-mv k8s-slackbot /app/k8s-slackbot/
+chmod +x k8s-slackbot
+mv k8s-slackbot /app/
 
 # Cleanup GOPATH
 rm -r $GOPATH
