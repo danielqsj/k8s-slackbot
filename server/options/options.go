@@ -24,7 +24,7 @@ func NewSlackBotServerConfig() *SlackBotServerConfig {
 	}
 }
 
-// AddFlags adds flags for a specific ProxyServer to the specified FlagSet
+// AddFlags adds flags for a specific SlackBotServer to the specified FlagSet
 func (c *SlackBotServerConfig) AddFlags(fs *pflag.FlagSet) {
 	fs.StringVar(&c.KubeConfigFile, "kubecfg-file", c.KubeConfigFile, "Location of kubecfg file for access to kubernetes master service; --kube-master-url overrides the URL part of this; if neither this nor --kube-master-url are provided, defaults to service account tokens")
 	fs.IntVar(&c.HealthzPort, "healthz-port", c.HealthzPort, "Port on which to serve an App Monitor HTTP readiness probe.")
