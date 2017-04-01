@@ -1,4 +1,6 @@
 # K8S Slackbot
+[![Build Status](https://travis-ci.org/danielqsj/k8s-slackbot.svg?branch=master)](https://travis-ci.org/danielqsj/k8s-slackbot)
+[![Coverage Status](https://coveralls.io/repos/github/danielqsj/k8s-slackbot/badge.svg?branch=master)](https://coveralls.io/github/danielqsj/k8s-slackbot?branch=master)
 [![Go Report Card](https://goreportcard.com/badge/github.com/danielqsj/k8s-slackbot)](https://goreportcard.com/report/github.com/danielqsj/k8s-slackbot)
 
 A slack bot built to control kubernetes cluster.
