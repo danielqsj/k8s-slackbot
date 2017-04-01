@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"strings"
 
-	"k8s.io/kubernetes/pkg/client/unversioned/clientcmd"
 	"k8s.io/kubernetes/pkg/kubectl/cmd"
 	cmdutil "k8s.io/kubernetes/pkg/kubectl/cmd/util"
 )
@@ -24,7 +23,7 @@ func RunKubectl(kubeconfig string, args []string) (string, error) {
 }
 
 func AppendKubeconfig(kubeconfig string, args []string) []string {
-	newKubeconfig := "--" + clientcmd.RecommendedConfigPathFlag + "=" + kubeconfig
+	newKubeconfig := "--kubeconfig=" + kubeconfig
 	return append(args, newKubeconfig)
 }
 
