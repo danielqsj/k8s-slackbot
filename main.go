@@ -12,7 +12,7 @@ import (
 var (
 	// value overwritten during build. This can be used to resolve issues.
 	version = "1.0"
-	gitRepo = "https://github.com/danielqsj/kubernetes-slackbot"
+	gitRepo = "https://github.com/danielqsj/k8s-slackbot"
 )
 
 func main() {

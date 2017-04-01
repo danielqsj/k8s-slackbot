@@ -23,9 +23,9 @@ rm golang.tar.gz
 # Build
 cd /usr/local/go/src
 # see https://golang.org/issue/14851
-patch -p2 -i /app/build/build/no-pic.patch
+patch -p2 -i /app/build/no-pic.patch
 ./make.bash
 
 # Clean
-rm /app/build/build/*.patch
+rm /app/build/*.patch
 apk del build-deps-go

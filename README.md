@@ -1,1 +1,1 @@
-# kubernetes-slackbot
+# k8s-slackbot
