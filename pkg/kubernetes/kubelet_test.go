@@ -1,15 +1,15 @@
 package kubernetes
 
 import (
-	"testing"
 	"reflect"
+	"testing"
 )
 
 func TestAppendKubeconfig(t *testing.T) {
 	testCases := []struct {
-		kubeconfig      string
-		args            []string
-		expected        []string
+		kubeconfig string
+		args       []string
+		expected   []string
 	}{
 		{"/etc/kubernetes/kubeconfig", []string{"--debug=true"}, []string{"--debug=true", "--kubeconfig=/etc/kubernetes/kubeconfig"}},
 	}

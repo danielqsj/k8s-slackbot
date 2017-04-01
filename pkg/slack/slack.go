@@ -11,6 +11,7 @@ import (
 	"github.com/danielqsj/k8s-slackbot/pkg/kubernetes"
 )
 
+// SlackBot defines a slack client
 type SlackBot struct {
 	Client *slack.Client
 }

@@ -12,6 +12,7 @@ import (
 	"github.com/danielqsj/k8s-slackbot/server/options"
 )
 
+// SlackBotServer defines struct of slack bot server
 type SlackBotServer struct {
 	healthzPort    int
 	configMap      string

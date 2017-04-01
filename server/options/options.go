@@ -1,8 +1,6 @@
 package options
 
 import (
-	_ "net/http/pprof"
-
 	"github.com/spf13/pflag"
 )
 
