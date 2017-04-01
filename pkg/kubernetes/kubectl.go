@@ -9,6 +9,7 @@ import (
 	cmdutil "k8s.io/kubernetes/pkg/kubectl/cmd/util"
 )
 
+// RunKubectl run kubectl command and return result
 func RunKubectl(kubeconfig string, args []string) (string, error) {
 	var b bytes.Buffer
 	cmdOut := &b
@@ -22,12 +23,14 @@ func RunKubectl(kubeconfig string, args []string) (string, error) {
 	return fmt.Sprintf("%s\n", b.String()), err
 }
 
+// AppendKubeconfig append param kubeconfig
 func AppendKubeconfig(kubeconfig string, args []string) []string {
 	newKubeconfig := "--kubeconfig=" + kubeconfig
 	return append(args, newKubeconfig)
 }
 
-func TestConnection(kubeconfig string) (string, error) {
+// ConnectMaster connect to kubernetes master
+func ConnectMaster(kubeconfig string) (string, error) {
 	args := []string{"version"}
 	return RunKubectl(kubeconfig, args)
 }

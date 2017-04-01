@@ -15,21 +15,25 @@ type SlackBot struct {
 	Client *slack.Client
 }
 
+// InitSlackLog inits slack log
 func InitSlackLog() {
 	logger := log.New(os.Stdout, "slack-bot: ", log.Lshortfile|log.LstdFlags)
 	slack.SetLogger(logger)
 }
 
+// NewSlackBot returns new slackbot with token
 func NewSlackBot(token string) SlackBot {
 	return SlackBot{
 		Client: slack.New(token),
 	}
 }
 
+// EnableDebug enables debug log
 func (bot SlackBot) EnableDebug() {
 	bot.Client.SetDebug(true)
 }
 
+// RunSlackRTMServer runs rtm server
 func (bot SlackBot) RunSlackRTMServer(kubeconfig string) {
 	rtm := bot.Client.NewRTM()
 	go rtm.ManageConnection()
@@ -67,6 +71,7 @@ func (bot SlackBot) RunSlackRTMServer(kubeconfig string) {
 	}
 }
 
+// GetUserName returns username by userid
 func (bot SlackBot) GetUserName(userId string) string {
 	user, err := bot.Client.GetUserInfo(userId)
 	if err != nil {
@@ -76,6 +81,7 @@ func (bot SlackBot) GetUserName(userId string) string {
 	return user.Profile.FirstName + " " + user.Profile.LastName
 }
 
+// GetUserId returns userid by username
 func (bot SlackBot) GetUserId(userName string) (string, error) {
 	users, err := bot.Client.GetUsers()
 	if err != nil {
@@ -89,6 +95,7 @@ func (bot SlackBot) GetUserId(userName string) (string, error) {
 	return "", fmt.Errorf("Cannot find this user %s", userName)
 }
 
+// SendMessage sends message to users
 func (bot SlackBot) SendMessage(userNames []string, message string) {
 	params := slack.PostMessageParameters{}
 	for _, userName := range userNames {
@@ -106,6 +113,7 @@ func (bot SlackBot) SendMessage(userNames []string, message string) {
 	}
 }
 
+// SendMessages sends messages to a user
 func (bot SlackBot) SendMessages(userName string, message []string) {
 	params := slack.PostMessageParameters{}
 	userId, err := bot.GetUserId(userName)

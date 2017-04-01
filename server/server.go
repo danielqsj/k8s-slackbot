@@ -21,6 +21,7 @@ type SlackBotServer struct {
 	slackBot       slack.SlackBot
 }
 
+// NewSlackBotServerDefault returns new slack bot server
 func NewSlackBotServerDefault(config *options.SlackBotServerConfig) *SlackBotServer {
 	s := SlackBotServer{
 		healthzPort:    config.HealthzPort,
@@ -29,7 +30,7 @@ func NewSlackBotServerDefault(config *options.SlackBotServerConfig) *SlackBotSer
 		kubeConfigFile: config.KubeConfigFile,
 		debugEnable:    config.DebugEnable,
 	}
-	output, err := kubernetes.TestConnection(s.kubeConfigFile)
+	output, err := kubernetes.ConnectMaster(s.kubeConfigFile)
 	if err != nil {
 		log.Fatal("Connect to kubernetes master failed\n")
 	} else {
@@ -39,6 +40,7 @@ func NewSlackBotServerDefault(config *options.SlackBotServerConfig) *SlackBotSer
 	return &s
 }
 
+// Run starts server and health check
 func (server *SlackBotServer) Run() {
 	pflag.VisitAll(func(flag *pflag.Flag) {
 		log.Printf("FLAG: --%s=%q", flag.Name, flag.Value)
@@ -60,6 +62,7 @@ func (server *SlackBotServer) setupHealthzHandlers() {
 	})
 }
 
+// start starts server
 func (server *SlackBotServer) start() {
 	slack.InitSlackLog()
 	if server.debugEnable {

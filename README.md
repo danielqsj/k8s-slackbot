@@ -1,5 +1,5 @@
-K8S Slackbot
-=========================================
+# K8S Slackbot
+[![Go Report Card](https://goreportcard.com/badge/github.com/danielqsj/k8s-slackbot)](https://goreportcard.com/report/github.com/danielqsj/k8s-slackbot)
 
 A slack bot built to control kubernetes cluster.
 

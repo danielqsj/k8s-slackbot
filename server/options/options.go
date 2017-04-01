@@ -15,6 +15,7 @@ type SlackBotServerConfig struct {
 	DebugEnable    bool
 }
 
+// NewSlackBotServerConfig returns default config
 func NewSlackBotServerConfig() *SlackBotServerConfig {
 	return &SlackBotServerConfig{
 		KubeConfigFile: "",
