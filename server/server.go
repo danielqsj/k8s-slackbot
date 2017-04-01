@@ -7,9 +7,9 @@ import (
 
 	"github.com/spf13/pflag"
 
-	"github.com/danielqsj/kubernetes-slackbot/pkg/kubernetes"
-	"github.com/danielqsj/kubernetes-slackbot/pkg/slack"
-	"github.com/danielqsj/kubernetes-slackbot/server/options"
+	"github.com/danielqsj/k8s-slackbot/pkg/kubernetes"
+	"github.com/danielqsj/k8s-slackbot/pkg/slack"
+	"github.com/danielqsj/k8s-slackbot/server/options"
 )
 
 type SlackBotServer struct {

@@ -24,6 +24,10 @@ package v2alpha1
 import (
 	"errors"
 	"fmt"
+	"reflect"
+	"runtime"
+	time "time"
+
 	codec1978 "github.com/ugorji/go/codec"
 	pkg5_resource "k8s.io/apimachinery/pkg/api/resource"
 	pkg1_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -31,9 +35,6 @@ import (
 	pkg6_intstr "k8s.io/apimachinery/pkg/util/intstr"
 	pkg4_v1 "k8s.io/kubernetes/pkg/api/v1"
 	pkg3_v1 "k8s.io/kubernetes/pkg/apis/batch/v1"
-	"reflect"
-	"runtime"
-	time "time"
 )
 
 const (

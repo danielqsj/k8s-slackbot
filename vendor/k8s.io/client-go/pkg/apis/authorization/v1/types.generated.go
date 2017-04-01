@@ -24,12 +24,13 @@ package v1
 import (
 	"errors"
 	"fmt"
-	codec1978 "github.com/ugorji/go/codec"
-	pkg1_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	pkg2_types "k8s.io/apimachinery/pkg/types"
 	"reflect"
 	"runtime"
 	time "time"
+
+	codec1978 "github.com/ugorji/go/codec"
+	pkg1_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	pkg2_types "k8s.io/apimachinery/pkg/types"
 )
 
 const (

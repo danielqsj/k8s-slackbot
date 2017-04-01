@@ -21,6 +21,8 @@ limitations under the License.
 package v2alpha1
 
 import (
+	unsafe "unsafe"
+
 	resource "k8s.io/apimachinery/pkg/api/resource"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	conversion "k8s.io/apimachinery/pkg/conversion"
@@ -28,7 +30,6 @@ import (
 	api "k8s.io/client-go/pkg/api"
 	api_v1 "k8s.io/client-go/pkg/api/v1"
 	autoscaling "k8s.io/client-go/pkg/apis/autoscaling"
-	unsafe "unsafe"
 )
 
 func init() {

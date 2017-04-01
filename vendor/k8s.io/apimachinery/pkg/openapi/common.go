@@ -17,9 +17,10 @@ limitations under the License.
 package openapi
 
 import (
+	"strings"
+
 	"github.com/emicklei/go-restful"
 	"github.com/go-openapi/spec"
-	"strings"
 )
 
 // OpenAPIDefinition describes single type. Normally these definitions are auto-generated using gen-openapi.

@@ -24,14 +24,15 @@ package v2alpha1
 import (
 	"errors"
 	"fmt"
+	"reflect"
+	"runtime"
+	time "time"
+
 	codec1978 "github.com/ugorji/go/codec"
 	pkg1_resource "k8s.io/apimachinery/pkg/api/resource"
 	pkg3_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	pkg4_types "k8s.io/apimachinery/pkg/types"
 	pkg2_v1 "k8s.io/client-go/pkg/api/v1"
-	"reflect"
-	"runtime"
-	time "time"
 )
 
 const (

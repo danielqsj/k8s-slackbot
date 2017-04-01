@@ -8,7 +8,7 @@ import (
 
 	"github.com/nlopes/slack"
 
-	"github.com/danielqsj/kubernetes-slackbot/pkg/kubernetes"
+	"github.com/danielqsj/k8s-slackbot/pkg/kubernetes"
 )
 
 type SlackBot struct {
